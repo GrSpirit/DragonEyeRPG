@@ -8,10 +8,15 @@ namespace DraygonEyeRPG
 {
     public class Program
     {
-        
         public static void Main(string[] args)
         {
-            string[] Places = { "Griglagg", "Ravenwood", "Dunwich", "Greenwood" };
+            Location[] Places = {
+                LocationFabric.CreateGriglagg(),
+                LocationFabric.CreateRavenwood(),
+                LocationFabric.CreateDunwich(),
+                LocationFabric.CreateGreenwood()
+            };
+            //string[] Places = { "Griglagg", "Ravenwood", "Dunwich", "Greenwood" };
             Console.WriteLine("Welcome to Dragon Eye, a terminal RPG!");
             System.Threading.Thread.Sleep(2000);
             Console.WriteLine("This game was created for the AI competition on repl.it");
@@ -27,8 +32,10 @@ namespace DraygonEyeRPG
                 int travel = rnd.Next(0, 5);
                 if (travel == 1)
                 {
-                    string place = Places[rnd.Next(0, Places.Length)];
-                    Console.WriteLine("You travel to {0}.", place);
+                    Location place = Places[rnd.Next(0, Places.Length)];
+                    Console.WriteLine("You travel to {0}.", place.Name);
+                    System.Threading.Thread.Sleep(1000);
+                    place.Enter(MainPlayer);
                 }
                 else
                 {
